@@ -1,6 +1,6 @@
 #include <stdlib.h>
 #include <stdio.h>
-#include "perf.h"
+#include "fperf.h"
 
 PERF_DECL();
 

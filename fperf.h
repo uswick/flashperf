@@ -36,6 +36,10 @@
 typedef enum{
   E_INS_COUNT = 0,
   E_L1_D_MISSES,
+  E_LL_D_MISSES,
+  E_TLB_D_MISSES,
+  E_NODE_L_ACCESSES,
+  E_NODE_L_MISSES,
   NO_EVENT
 } perf_evt_t;
 
@@ -58,7 +62,15 @@ typedef struct perf_cvalue {
 static perf_cvalue_t __perf_cvalues[] = {\
   {.e=E_INS_COUNT, .type=PERF_TYPE_HARDWARE, .config=PERF_COUNT_HW_INSTRUCTIONS},\
   {.e=E_L1_D_MISSES, .type=PERF_TYPE_HW_CACHE, .config=((PERF_COUNT_HW_CACHE_L1D) | (PERF_COUNT_HW_CACHE_OP_READ << 8) |\
-                      (PERF_COUNT_HW_CACHE_RESULT_MISS << 16))}\
+                      (PERF_COUNT_HW_CACHE_RESULT_MISS << 16))},\
+  {.e=E_LL_D_MISSES, .type=PERF_TYPE_HW_CACHE, .config=((PERF_COUNT_HW_CACHE_LL) | (PERF_COUNT_HW_CACHE_OP_READ << 8) |\
+                      (PERF_COUNT_HW_CACHE_RESULT_MISS << 16))},\
+  {.e=E_TLB_D_MISSES, .type=PERF_TYPE_HW_CACHE, .config=((PERF_COUNT_HW_CACHE_DTLB) | (PERF_COUNT_HW_CACHE_OP_READ << 8) |\
+                      (PERF_COUNT_HW_CACHE_RESULT_MISS << 16))},\
+  {.e=E_NODE_L_ACCESSES, .type=PERF_TYPE_HW_CACHE, .config=((PERF_COUNT_HW_CACHE_NODE) | (PERF_COUNT_HW_CACHE_OP_READ << 8) |\
+                      (PERF_COUNT_HW_CACHE_RESULT_ACCESS << 16))},\
+  {.e=E_NODE_L_MISSES, .type=PERF_TYPE_HW_CACHE, .config=((PERF_COUNT_HW_CACHE_NODE) | (PERF_COUNT_HW_CACHE_OP_READ << 8) |\
+                      (PERF_COUNT_HW_CACHE_RESULT_MISS << 16))},\
 };\
 \
   struct perf_event_attr __perf_pe;\
