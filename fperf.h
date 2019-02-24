@@ -40,6 +40,7 @@ typedef enum{
   E_TLB_D_MISSES,
   E_NODE_L_ACCESSES,
   E_NODE_L_MISSES,
+  E_NB_CB_MREQ1,
   NO_EVENT
 } perf_evt_t;
 
@@ -71,6 +72,7 @@ static perf_cvalue_t __perf_cvalues[] = {\
                       (PERF_COUNT_HW_CACHE_RESULT_ACCESS << 16))},\
   {.e=E_NODE_L_MISSES, .type=PERF_TYPE_HW_CACHE, .config=((PERF_COUNT_HW_CACHE_NODE) | (PERF_COUNT_HW_CACHE_OP_READ << 8) |\
                       (PERF_COUNT_HW_CACHE_RESULT_MISS << 16))},\
+  {.e=E_NB_CB_MREQ1, .type=PERF_TYPE_RAW, .config=(0x1000001e0)},\
 };\
 \
   struct perf_event_attr __perf_pe;\
